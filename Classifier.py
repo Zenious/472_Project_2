@@ -62,8 +62,8 @@ class Classifier():
 	def print_model(self, filename):
 		with open(filename, "w", encoding="latin-1") as f:
 			for i,k in enumerate(sorted(self.word_count)):
-				f.write("{}  {}  {}  {}  {}  {}\r\n".format(i, k, self.spam_word_count.get(k,0)
-					,self.spam_prob[k], self.ham_word_count.get(k,0), self.ham_prob[k]))
+				f.write("{}  {}  {}  {}  {}  {}\r\n".format(i, k, self.ham_word_count.get(k,0)
+					,self.ham_prob[k], self.spam_word_count.get(k,0), self.spam_prob[k]))
 
 	def reset(self):
 		self.word_count = {}
