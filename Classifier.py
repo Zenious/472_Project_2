@@ -111,19 +111,19 @@ def test_batch(classifer, dir_path, output_file):
 			else:
 				correct = "spam"
 				if res[0]==correct:
-					matrix[2] += 1
-				else:
 					matrix[3] += 1
+				else:
+					matrix[2] += 1
 			verdict = "right" if correct==res[0] else "wrong"
 			f.write("{}  {}  {}  {}  {}  {}  {}\r\n".format(index, filename, res[0], res[1], res[2], correct, verdict))
 	
 	beta = math.pow(1,2)
 	total = sum(matrix)
-	acc = sum([matrix[0],matrix[2]])/sum(matrix)
+	acc = sum([matrix[0],matrix[3]])/sum(matrix)
 	p_ham = matrix[0]/sum([matrix[0],matrix[1]])
-	p_spam = matrix[2]/sum([matrix[2],matrix[3]])
-	r_ham = matrix[0]/sum([matrix[0],matrix[3]])
-	r_spam = matrix[2]/sum([matrix[2],matrix[1]])
+	p_spam = matrix[3]/sum([matrix[3],matrix[2]])
+	r_ham = matrix[0]/sum([matrix[0],matrix[2]])
+	r_spam = matrix[3]/sum([matrix[3],matrix[1]])
 	f_ham = ((beta + 1)*p_ham*r_ham)/(beta*p_ham+r_ham)
 	f_spam = ((beta + 1)*p_spam*r_spam)/(beta*p_spam+r_spam)
 	print(matrix)
